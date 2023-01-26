@@ -1,0 +1,114 @@
+package FreyJan;
+import robocode.*;
+
+
+public class Kevin extends JuniorRobot
+{
+	int north = 0;
+	int east = 90;
+	int south = 180;
+	int west  = 270;
+	int enemyDistance = scannedDistance;
+	int enemyAngle = scannedAngle;
+	int currentRobots = others; 
+	public void run() {
+	
+		setColors(black, black, black, black, black);
+		
+		startingProgramm();
+	
+		while(true) {
+		searchingEnemys();
+		
+	
+
+		
+	 }
+	}
+
+
+	public void onScannedRobot() {
+		if (currentRobots > 10) {
+		defensiveMode();
+		}
+		if (currentRobots < 10) {
+		attackMode();
+		}
+	
+		
+	}
+
+
+	public void onHitByBullet() {
+	
+		back(10);
+	}
+	
+
+	public void onHitWall() {
+	
+		back(20);
+	}	
+	public void startingProgramm()  {
+		int northWall;
+		int eastWall; 
+		northWall = fieldHeight - robotY;
+		eastWall = fieldWidth - robotX;
+		turnTo(north);
+		ahead(northWall);
+		turnTo(east);
+		ahead(eastWall);
+	}
+	public void defensiveMode(){
+		turnTo(south);
+		ahead(800);
+		turnTo(north);
+		ahead(800);
+		
+	}
+	public void attackMode(){
+	turnTo(enemyAngle);
+	ahead(enemyDistance);
+	smartFire();
+	}
+	
+	public void smartFire(){
+	if (gunReady){
+		if (enemyDistance< 50){
+			fire(3);
+		}
+		if (enemyDistance< 150){
+			fire(2);
+		}
+		if (enemyDistance>150){
+			fire(1);
+		}
+	}
+	else {
+		}
+	}
+	public void searchingEnemys(){
+		turnTo(south);
+		ahead(500);
+		turnLeft(west);
+		turnLeft(North);
+		ahead(500);
+		turnRight(west);
+		turnRight(south);
+		ahaead(500);
+	}
+		
+	}
+		
+
+	
+	}
+		
+	
+		
+	
+
+		
+	}
+
+
